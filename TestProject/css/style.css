@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #192c38;
+    font-family: 'proxima-nova', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #b7bfd6;
+}
+
+input {
+    color: white;
+    border-color: #2e4452;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    background-color: rgb(18, 34, 46);
+    width: 100%;
+    height: 40px;
+    font-family: 'proxima-nova', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em; 
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+button {
+    background-color: #3179f6;
+    border-radius: 5px;
+    width: 100%;
+    color: white;
+    padding: calc(1em + 2px);
+    border: solid #3179f6;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.5s;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #005dff;
+    border: solid #005dff;
+    opacity: 1;
+    cursor: pointer;
+}
+
+form {
+    float:left;
+    width:50%;
+    margin-left: 25%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #192c38;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 6px -1px, rgba(0, 0, 0, 0.12) 0px 2px 4px -1px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: #b7bfd6;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    color: #b3b3b3;
+  }
+
+  .navbtn {
+      width: 80px;
+      padding: 8px 8px;
+      margin-top: 3px;
+  }
+
+  #title {
+    color: white;
+}
+
+  .contentBtn {
+      width: 280px;
+      height: 220px;
+      margin-left: 40px;
+      margin-top: 40px;
+      font-size: 30px;
+  }
+
+  .contentBtn:hover {  
+      font-size: 32px;
+      width: 290px;
+  }
+
+  a {
+      color: #b7bfd6;
+      font-weight: 600;
+  }
+
+  h1 {
+      text-align: center;
+  }
