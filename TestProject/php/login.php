@@ -1,32 +1,36 @@
 <?php
+session_start();
 
-// Heeft connection.php nodig.
-require 'connection.php';
+include '../private/db.php';
 
-// Kijkt of alles ingevuld is binnen de login.inc.php
-if(!empty($_POST['email']) && !empty($_POST['password'])):
-	
-	$records = $conn->prepare('SELECT id,email,password,role FROM users WHERE email = :email');
-	$records->bindParam(':email', $_POST['email']);
-	$records->execute();
-	$results = $records->fetch(PDO::FETCH_ASSOC);
+$sql = 'SELECT * FROM users INNER JOIN cities ON users.FKCityId = cities.CityId WHERE Email = :email';
+$sth = $conn->prepare($sql);
+$sth->bindParam(':email', $_POST['email']);
+$sth->execute();
 
-	// Kijkt of ingevulde gegevens gelijk zijn als die in de database.
-	if(count($results) > 0 && password_verify($_POST['password'], $results['password']) ){
-
-		$_SESSION['user_id'] = $results['id'];
-		$_SESSION['role'] = $results['role'];
-		header("Location: ../index.php");
-
-	} else {
-		// Maakt sessie voor de error message als gegevens incorrect zijn.
-		$_SESSION['error'] = array("Ingevoerde gegevens zijn incorrect.");
-		header("Location: ../includes/login.inc.php");
-	}
-else:
-	// Maakt sessie voor de error message als gebruiker niet alles in vult.
-	$_SESSION['error'] = array("Vul al uw gegevens in aub.");
-	header("Location: ../includes/login.inc.php");
-endif;
+if(isset($_POST['login'])){
+    if($rsUser = $sth->fetch(PDO::FETCH_ASSOC)){
+        $hashpassword = $rsUser['Password'];
+        if(password_verify($_POST['password'], $hashpassword)){
+            $_SESSION['id'] = $rsUser['UserId'];
+            $_SESSION['firstname'] = $rsUser['Firstname'];
+            $_SESSION['lastname'] = $rsUser['Lastname'];
+            $_SESSION['city'] = $rsUser['CityName'];
+            $_SESSION['street'] = $rsUser['Street'];
+            $_SESSION['housenumber'] = $rsUser['HouseNumber'];
+            $_SESSION['postalcode'] = $rsUser['PostalCode'];
+            $_SESSION['image'] = $rsUser['Image'];
+            $_SESSION['email'] = $rsUser['Email'];
+            $_SESSION['succes'] = "<p class='alert alert-success text-center'>U bent succesvol ingelogd!</p>";
+            header('location: ../index.php?page=home');
+        }else{
+            $_SESSION['error'] = "<p class='alert alert-danger text-center'>De combinatie van uw e-mail en wachtwoord is fout!</p>";
+            header('location: ../index.php?page=login');
+        }
+    }else{
+        $_SESSION['error'] = "<p class='alert alert-danger text-center'>De combinatie van uw e-mail en wachtwoord is fout!</p>";
+            header('location: ../index.php?page=login');
+    }
+}
 
 ?>

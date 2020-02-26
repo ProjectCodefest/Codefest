@@ -1,7 +1,7 @@
 <?php
-// Zorgt dat de sessie niet meer bestaat.
 session_start();
-session_unset();
 session_destroy();
-// Als geberuiker uitlogd gaat hij naar de index.php
-header('location: ../index.php');
+$_SESSION['succes'] = "<p class='text-center text-success'>U bent succesvol uitgelogd!</p>";
+header('location: ../index.php?page=home');
+exit();
+?>
